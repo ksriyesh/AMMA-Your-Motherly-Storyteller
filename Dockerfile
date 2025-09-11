@@ -11,9 +11,13 @@ RUN apt-get update && apt-get install -y \
 # Set working directory
 WORKDIR /app
 
+# Create and activate virtual environment
+RUN python3 -m venv /opt/venv
+ENV PATH="/opt/venv/bin:$PATH"
+
 # Copy and install Python dependencies
 COPY pyproject.toml ./
-RUN pip3 install --no-cache-dir -e .
+RUN pip install --no-cache-dir -e .
 
 # Copy Python backend source
 COPY src/ ./src/
@@ -35,7 +39,7 @@ WORKDIR /app
 # Create simple startup script
 RUN echo '#!/bin/bash\n\
 echo "🚀 Starting AMMA Backend on port 8001"\n\
-python3 -m uvicorn app:app --host 0.0.0.0 --port 8001 &\n\
+/opt/venv/bin/python -m uvicorn app:app --host 0.0.0.0 --port 8001 &\n\
 echo "🎨 Starting AMMA Frontend on port 3000"\n\
 cd AMMA-UI && npm start\n\
 ' > start.sh && chmod +x start.sh
