@@ -15,14 +15,14 @@ WORKDIR /app
 RUN python3 -m venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
 
-# Copy and install Python dependencies
-COPY pyproject.toml ./
-RUN pip install --no-cache-dir -e .
-
-# Copy Python backend source
+# Copy Python backend source first
 COPY src/ ./src/
 COPY app.py ./
 COPY main.py ./
+COPY pyproject.toml ./
+
+# Install Python dependencies
+RUN pip install --no-cache-dir -e .
 
 # Copy and install frontend dependencies
 COPY AMMA-UI/package*.json ./AMMA-UI/
