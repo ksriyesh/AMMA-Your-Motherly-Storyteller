@@ -2,6 +2,7 @@
 
 from typing import Any, Callable, List, Optional
 
+
 def update_story_preferences(
     child_name: Optional[str] = None, 
     story_theme: Optional[str] = None,

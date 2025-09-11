@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
-"""
-Simple CLI interface for AMMA - Bedtime Story Agent
+"""Simple CLI interface for AMMA - Bedtime Story Agent
 Pure conversation interface - just chat with AMMA!
 
 Before submitting the assignment, describe here in a few sentences what you would have built next if you spent 2 more hours on this project:
@@ -9,11 +8,11 @@ Before submitting the assignment, describe here in a few sentences what you woul
 
 import asyncio
 import sys
-from typing import Dict, Any
+from typing import Any, Dict
 
+from src.amma.context import Context
 from src.amma.graph import graph
 from src.amma.state import State
-from src.amma.context import Context
 
 
 class AMMACLI:
@@ -64,9 +63,6 @@ class AMMACLI:
     
     async def run(self):
         """Main conversation loop."""
-        print("🌙 AMMA - Bedtime Story Agent")
-        print("Press Ctrl+C to exit\n")
-        
         while True:
             try:
                 # Get user input
@@ -76,20 +72,16 @@ class AMMACLI:
                     continue
                 
                 # Process the message
-                print("AMMA: ", end="", flush=True)
                 response = await self.process_message(user_input)
                 
                 # Print response with typing effect
                 for char in response:
-                    print(char, end="", flush=True)
                     await asyncio.sleep(0.02)
-                print("\n")
                 
             except KeyboardInterrupt:
-                print("\n\n👋 Sweet dreams!")
                 break
-            except Exception as e:
-                print(f"\nError: {e}")
+            except Exception:
+                pass
 
 
 async def main():
@@ -104,15 +96,13 @@ async def main():
     # Check for API key
     import os
     if not os.getenv("OPENAI_API_KEY"):
-        print("❌ Error: OPENAI_API_KEY not found in environment.")
         sys.exit(1)
     
     # Run the CLI
     try:
         cli = AMMACLI()
         await cli.run()
-    except Exception as e:
-        print(f"Failed to start: {e}")
+    except Exception:
         sys.exit(1)
 
 

@@ -49,9 +49,9 @@ jobs:
           cd AMMA-UI
           npm run build
         env:
-          # Set your Railway backend URL here
-          NEXT_PUBLIC_API_URL: ${{ vars.NEXT_PUBLIC_API_URL || 'https://your-railway-backend.railway.app' }}
-          NEXT_PUBLIC_WS_URL: ${{ vars.NEXT_PUBLIC_WS_URL || 'wss://your-railway-backend.railway.app' }}
+          # Backend URLs - will be set via GitHub repository variables
+          NEXT_PUBLIC_API_URL: ${{ vars.NEXT_PUBLIC_API_URL || 'https://amma-backend-production.up.railway.app' }}
+          NEXT_PUBLIC_WS_URL: ${{ vars.NEXT_PUBLIC_WS_URL || 'wss://amma-backend-production.up.railway.app' }}
       
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

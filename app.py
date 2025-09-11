@@ -3,20 +3,19 @@
 import asyncio
 import json
 import uuid
-from typing import Dict, List, Optional
+from typing import Dict, Optional
 
+from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
-from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
-from dotenv import load_dotenv
 
 # Load environment variables from .env file
 load_dotenv()
 
-from src.amma.graph import graph
 from src.amma.context import Context
+from src.amma.graph import graph
 from src.amma.state import State
 
 
@@ -71,8 +70,7 @@ class ConnectionManager:
             websocket = self.active_connections[session_id]
             try:
                 await websocket.send_text(json.dumps(message))
-            except Exception as e:
-                print(f"Error sending message to {session_id}: {e}")
+            except Exception:
                 self.disconnect(session_id)
 
 
@@ -113,8 +111,7 @@ async def stream_response(session_id: str, response: str, base_delay: float = 0.
             "content": ""
         })
         
-    except Exception as e:
-        print(f"Error streaming response: {e}")
+    except Exception:
         # Fallback to regular response
         await manager.send_message(session_id, {
             "type": "response",
@@ -160,7 +157,6 @@ async def run_amma_agent(message: str, session_id: str) -> str:
         return "I'm sorry, I couldn't generate a response. Please try again."
         
     except Exception as e:
-        print(f"Error running AMMA agent: {e}")
         return f"I encountered an error: {str(e)}. Please try again."
 
 
@@ -224,7 +220,6 @@ async def websocket_endpoint(websocket: WebSocket, session_id: str):
     try:
         # Check if this is a new session (no messages yet)
         is_new_session = session_id not in sessions or len(sessions[session_id]["state"].messages) == 0
-        print(f"WebSocket connected - Session: {session_id[:8]}... | New session: {is_new_session}")
         
         if is_new_session:
             # Send typing indicator
@@ -239,7 +234,7 @@ async def websocket_endpoint(websocket: WebSocket, session_id: str):
             # Stream greeting response
             await stream_response(session_id, greeting_response)
         else:
-            print(f"   Skipping greeting - session has {len(sessions[session_id]['state'].messages)} messages")
+            pass
         
     except Exception as e:
         await manager.send_message(session_id, {
@@ -276,7 +271,6 @@ async def websocket_endpoint(websocket: WebSocket, session_id: str):
                     
     except WebSocketDisconnect:
         manager.disconnect(session_id)
-        print(f"Client {session_id[:8]}... disconnected")
 
 
 @app.get("/health")

@@ -39,8 +39,11 @@ export default function AmmaChat() {
   useEffect(() => {
     const connectWebSocket = () => {
       try {
-        // Use environment variable or default to localhost
-        const wsUrl = process.env.NEXT_PUBLIC_WS_URL || 'ws://localhost:8001/ws'
+        // Use environment variable, Railway backend, or localhost
+        const wsUrl = process.env.NEXT_PUBLIC_WS_URL || 
+                     (typeof window !== 'undefined' && window.location.hostname.includes('github.io') 
+                      ? 'wss://amma-backend-production.up.railway.app/ws' 
+                      : 'ws://localhost:8001/ws')
         const ws = new WebSocket(`${wsUrl}/${sessionId}`)
         wsRef.current = ws
 

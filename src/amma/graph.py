@@ -2,18 +2,16 @@
 
 from datetime import UTC, datetime
 from typing import Any, Dict, List, Literal, cast
-from copy import deepcopy
 
 from langchain_core.messages import AIMessage, ToolMessage
 from langgraph.graph import StateGraph
 from langgraph.runtime import Runtime
 
 from src.amma.context import Context
+from src.amma.prompts import AMMA_PROMPT, STORY_CREATOR_PROMPT, STORY_EDITOR_PROMPT
 from src.amma.state import InputState, State
 from src.amma.tools import TOOLS, update_story_preferences
 from src.amma.utils import load_chat_model
-from src.amma.prompts import AMMA_PROMPT, STORY_CREATOR_PROMPT, STORY_EDITOR_PROMPT
-
 
 # ============================================================================
 # AGENT NODES
