@@ -15,6 +15,7 @@ RUN npm install
 COPY AMMA-UI/ ./
 
 # Build the frontend
+# Cache bust: 2025-09-11-v2
 RUN npm run build
 
 # Stage 2: Setup Python backend and serve everything
