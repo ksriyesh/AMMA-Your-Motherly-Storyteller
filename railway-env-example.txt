@@ -1,0 +1,11 @@
+# Railway Environment Variables for AMMA Frontend
+# Set these in your Railway frontend service environment variables
+
+NEXT_PUBLIC_API_URL=https://your-backend-service.railway.app
+NEXT_PUBLIC_WS_URL=wss://your-backend-service.railway.app
+
+# Instructions:
+# 1. Go to Railway Dashboard
+# 2. Select your frontend service
+# 3. Go to Variables tab
+# 4. Add these environment variables with your actual backend URL

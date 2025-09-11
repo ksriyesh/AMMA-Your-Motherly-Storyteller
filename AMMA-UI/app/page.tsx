@@ -39,7 +39,9 @@ export default function AmmaChat() {
   useEffect(() => {
     const connectWebSocket = () => {
       try {
-        const ws = new WebSocket(`ws://localhost:8001/ws/${sessionId}`)
+        // Use environment variable or fallback to localhost for development
+        const wsUrl = process.env.NEXT_PUBLIC_WS_URL || 'ws://localhost:8001'
+        const ws = new WebSocket(`${wsUrl}/ws/${sessionId}`)
         wsRef.current = ws
 
         ws.onopen = () => {
@@ -154,7 +156,8 @@ export default function AmmaChat() {
         }))
       } else {
         // Fallback to REST API if WebSocket is not available
-        const response = await fetch('http://localhost:8001/chat', {
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8001'
+        const response = await fetch(`${apiUrl}/chat`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
