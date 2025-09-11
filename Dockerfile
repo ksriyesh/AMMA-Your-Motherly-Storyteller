@@ -32,8 +32,8 @@ RUN npm install
 # Copy frontend source and build
 COPY AMMA-UI/ ./
 
-# Debug: Check file structure
-RUN ls -la && echo "=== lib directory ===" && ls -la lib/ && echo "=== components/ui directory ===" && ls -la components/ui/
+# Ensure lib directory is copied (sometimes Docker misses it)
+COPY AMMA-UI/lib/ ./lib/
 
 RUN npm run build
 
