@@ -48,10 +48,10 @@ COPY --from=frontend-builder /app/frontend/.next ./AMMA-UI/.next
 COPY --from=frontend-builder /app/frontend/public ./AMMA-UI/public
 COPY --from=frontend-builder /app/frontend/package*.json ./AMMA-UI/
 COPY --from=frontend-builder /app/frontend/node_modules ./AMMA-UI/node_modules
-COPY AMMA-UI/next.config.js ./AMMA-UI/
-COPY AMMA-UI/tailwind.config.js ./AMMA-UI/
+COPY AMMA-UI/next.config.mjs ./AMMA-UI/
 COPY AMMA-UI/tsconfig.json ./AMMA-UI/
-COPY AMMA-UI/postcss.config.js ./AMMA-UI/
+COPY AMMA-UI/postcss.config.mjs ./AMMA-UI/
+COPY AMMA-UI/tailwind.config.js ./AMMA-UI/
 
 # Create startup script
 RUN echo '#!/bin/bash\n\
