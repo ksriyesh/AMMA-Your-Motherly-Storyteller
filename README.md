@@ -2,7 +2,8 @@
 
 **AMMA** (Adaptive Multi-agent Motherly Assistant) is an intelligent conversational AI system that creates personalized bedtime stories for children. Built with a hybrid architecture combining **ReAct (Reasoning and Acting)** and **Reflection** patterns, AMMA provides natural conversation while generating high-quality, safe bedtime stories.
 
-![AMMA Architecture](https://i.imgur.com/your-image-url.png)
+![AMMA Architecture](<img width="693" height="425" alt="image" src="https://github.com/user-attachments/assets/21c95737-c7f0-48ae-90c5-bf2cf0044db0" />
+)
 *Multi-agent architecture combining ReAct for interaction and Reflection for story creation*
 
 ## 🏗️ Architecture Overview
