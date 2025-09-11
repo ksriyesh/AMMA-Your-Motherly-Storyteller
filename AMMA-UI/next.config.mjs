@@ -18,9 +18,9 @@ const nextConfig = {
   // Enable static export for GitHub Pages
   output: 'export',
   trailingSlash: true,
-  // Configure base path if deploying to a subdirectory
-  // basePath: process.env.NODE_ENV === 'production' ? '/repository-name' : '',
-  // assetPrefix: process.env.NODE_ENV === 'production' ? '/repository-name/' : '',
+  // Configure base path for GitHub Pages
+  basePath: process.env.NODE_ENV === 'production' ? '/AMMA-Your-Motherly-Storyteller' : '',
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/AMMA-Your-Motherly-Storyteller/' : '',
   
   // Webpack configuration for proper path resolution
   webpack: (config) => {
