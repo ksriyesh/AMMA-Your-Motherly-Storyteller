@@ -43,48 +43,13 @@ WORKDIR /app
 # Install serve for static file serving
 RUN npm install -g serve
 
-# Create nginx config for reverse proxy
-RUN echo 'events { worker_connections 1024; }\n\
-http {\n\
-    upstream backend {\n\
-        server localhost:8001;\n\
-    }\n\
-    server {\n\
-        listen 3000;\n\
-        location /api/ {\n\
-            proxy_pass http://backend/;\n\
-            proxy_http_version 1.1;\n\
-            proxy_set_header Upgrade $http_upgrade;\n\
-            proxy_set_header Connection "upgrade";\n\
-            proxy_set_header Host $host;\n\
-        }\n\
-        location /ws/ {\n\
-            proxy_pass http://backend/ws/;\n\
-            proxy_http_version 1.1;\n\
-            proxy_set_header Upgrade $http_upgrade;\n\
-            proxy_set_header Connection "upgrade";\n\
-            proxy_set_header Host $host;\n\
-        }\n\
-        location /docs {\n\
-            proxy_pass http://backend/docs;\n\
-        }\n\
-        location / {\n\
-            root /app/AMMA-UI/out;\n\
-            try_files $uri $uri/ /index.html;\n\
-        }\n\
-    }\n\
-}\n\
-' > nginx.conf\n\
-\n\
-# Install nginx\n\
-RUN apt-get update && apt-get install -y nginx && rm -rf /var/lib/apt/lists/*\n\
-\n\
-# Create startup script\n\
+# Create simple startup script that serves everything on one port
 RUN echo '#!/bin/bash\n\
+PORT=${PORT:-3000}\n\
 echo "🚀 Starting AMMA Backend on port 8001"\n\
 /opt/venv/bin/python -m uvicorn app:app --host 0.0.0.0 --port 8001 &\n\
-echo "🌐 Starting Nginx reverse proxy on port 3000"\n\
-nginx -c /app/nginx.conf -g "daemon off;"\n\
+echo "🎨 Starting AMMA Frontend on port $PORT"\n\
+cd AMMA-UI && serve -s out -l $PORT --single\n\
 ' > start.sh && chmod +x start.sh
 
 # Expose ports

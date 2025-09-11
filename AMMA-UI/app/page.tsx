@@ -39,10 +39,8 @@ export default function AmmaChat() {
   useEffect(() => {
     const connectWebSocket = () => {
       try {
-        // Use same domain with /ws/ path for Railway, or localhost for development
-        const isRailway = window.location.hostname.includes('railway.app')
-        const wsUrl = process.env.NEXT_PUBLIC_WS_URL || 
-                     (isRailway ? `wss://${window.location.host}/ws` : 'ws://localhost:8001/ws')
+        // Use environment variable or default to localhost
+        const wsUrl = process.env.NEXT_PUBLIC_WS_URL || 'ws://localhost:8001/ws'
         const ws = new WebSocket(`${wsUrl}/${sessionId}`)
         wsRef.current = ws
 
@@ -158,9 +156,7 @@ export default function AmmaChat() {
         }))
       } else {
         // Fallback to REST API if WebSocket is not available
-        const isRailway = window.location.hostname.includes('railway.app')
-        const apiUrl = process.env.NEXT_PUBLIC_API_URL || 
-                      (isRailway ? `https://${window.location.host}/api` : 'http://localhost:8001')
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8001'
         const response = await fetch(`${apiUrl}/chat`, {
           method: 'POST',
           headers: {
