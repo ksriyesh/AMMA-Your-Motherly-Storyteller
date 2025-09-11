@@ -45,10 +45,12 @@ RUN npm install -g serve
 
 # Create simple startup script
 RUN echo '#!/bin/bash\n\
-echo "🚀 Starting AMMA Backend on port 8001"\n\
-/opt/venv/bin/python -m uvicorn app:app --host 0.0.0.0 --port 8001 &\n\
-echo "🎨 Starting AMMA Frontend on port 3000"\n\
-cd AMMA-UI && serve -s out -l 3000\n\
+PORT=${PORT:-3000}\n\
+BACKEND_PORT=$((PORT + 1))\n\
+echo "🚀 Starting AMMA Backend on port $BACKEND_PORT"\n\
+/opt/venv/bin/python -m uvicorn app:app --host 0.0.0.0 --port $BACKEND_PORT &\n\
+echo "🎨 Starting AMMA Frontend on port $PORT"\n\
+cd AMMA-UI && serve -s out -l $PORT\n\
 ' > start.sh && chmod +x start.sh
 
 # Expose ports
