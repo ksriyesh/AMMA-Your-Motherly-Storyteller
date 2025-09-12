@@ -20,5 +20,5 @@ RUN pip install --no-cache-dir -e .
 # Expose backend port (Railway will set PORT env var)
 EXPOSE 8001
 
-# Start backend with Railway's PORT or default to 8001
+# Start backend on Railway's PORT (8080) or fallback to 8001
 CMD ["sh", "-c", "python -m uvicorn app:app --host 0.0.0.0 --port ${PORT:-8001}"]
