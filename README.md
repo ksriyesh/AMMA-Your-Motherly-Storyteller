@@ -49,6 +49,33 @@ User Input → AMMA (Conversational) → Tools → Story Creator → Story Evalu
 - Conversation history
 - Evaluation results and feedback
 - Revision tracking (max 3 iterations)
+## 🚀 Future Improvements (Given More Time)
+
+**If I had additional 2+ hours to extend this project, I would focus on:**
+
+### **1. Voice Integration 🎵**
+- **Text-to-Speech**: Integrate ElevenLabs or similar for reading stories aloud
+- **Voice Selection**: Different voices for characters and narrator
+- **Audio Controls**: Pause, speed adjustment, replay functionality
+- **Bedtime Optimization**: Gradually slower, softer voice as story progresses
+
+### **2. Enhanced Story Generation 📚**
+- **MCP Integration**: Set up Model Context Protocol to reference classic children's literature
+- **Story Arc Refinement**: More sophisticated narrative structures (Hero's Journey for kids)
+- **Character Development**: Consistent character personalities across stories
+- **Interactive Elements**: "Choose your own adventure" style branching
+
+### **3. Classic Story Database 📖**
+- **Story Templates**: Reference database of classic fairy tales and fables
+- **Cultural Stories**: Include diverse cultural backgrounds and traditions
+- **Moral Lessons**: Structured integration of age-appropriate life lessons
+- **Story Mixing**: Combine elements from different classic stories creatively
+
+### **4. Advanced Personalization 👶**
+- **Child Profiles**: Remember preferences, favorite characters, themes
+- **Learning Adaptation**: Adjust vocabulary and complexity based on engagement
+- **Emotional Intelligence**: Detect and respond to child's emotional state
+- **Progress Tracking**: Story comprehension and engagement metrics
 
 ## 📦 Installation & Setup
 
@@ -295,33 +322,6 @@ Rather than building a simple script, I created a **production-ready multi-agent
 - **User Experience Focus**: Natural conversation flow with revision capabilities
 - **Scalable Architecture**: Modular design supporting future enhancements
 
-## 🚀 Future Improvements (Given More Time)
-
-**If I had additional 2+ hours to extend this project, I would focus on:**
-
-### **1. Voice Integration 🎵**
-- **Text-to-Speech**: Integrate ElevenLabs or similar for reading stories aloud
-- **Voice Selection**: Different voices for characters and narrator
-- **Audio Controls**: Pause, speed adjustment, replay functionality
-- **Bedtime Optimization**: Gradually slower, softer voice as story progresses
-
-### **2. Enhanced Story Generation 📚**
-- **MCP Integration**: Set up Model Context Protocol to reference classic children's literature
-- **Story Arc Refinement**: More sophisticated narrative structures (Hero's Journey for kids)
-- **Character Development**: Consistent character personalities across stories
-- **Interactive Elements**: "Choose your own adventure" style branching
-
-### **3. Classic Story Database 📖**
-- **Story Templates**: Reference database of classic fairy tales and fables
-- **Cultural Stories**: Include diverse cultural backgrounds and traditions
-- **Moral Lessons**: Structured integration of age-appropriate life lessons
-- **Story Mixing**: Combine elements from different classic stories creatively
-
-### **4. Advanced Personalization 👶**
-- **Child Profiles**: Remember preferences, favorite characters, themes
-- **Learning Adaptation**: Adjust vocabulary and complexity based on engagement
-- **Emotional Intelligence**: Detect and respond to child's emotional state
-- **Progress Tracking**: Story comprehension and engagement metrics
 
 ## 🤝 Contributing
 
