@@ -51,7 +51,7 @@ jobs:
         env:
           # Backend URLs - will be set via GitHub repository variables
           NEXT_PUBLIC_API_URL: ${{ vars.NEXT_PUBLIC_API_URL || 'https://alluring-tenderness-staging.up.railway.app' }}
-          NEXT_PUBLIC_WS_URL: ${{ vars.NEXT_PUBLIC_WS_URL || 'wss://alluring-tenderness-staging.up.railway.app' }}
+          NEXT_PUBLIC_WS_URL: ${{ vars.NEXT_PUBLIC_WS_URL || 'wss://alluring-tenderness-staging.up.railway.app/ws' }}
       
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
