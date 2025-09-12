@@ -208,7 +208,7 @@ def route_from_amma(state: State) -> Literal["__end__", "tools", "story_creator"
     
     # Tool calls → execute tools
     if last_message.tool_calls:
-        return "tools"
+    return "tools"
 
     # Get user's last message for context analysis
     user_message = None

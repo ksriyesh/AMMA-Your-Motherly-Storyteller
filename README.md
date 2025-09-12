@@ -62,10 +62,6 @@ __start__ → amma → tools → amma → story_creator → story_evaluator
 ```bash
 # Install everything automatically
 python install.py
-
-# Or use platform-specific scripts:
-# Windows: install.bat
-# Linux/macOS: ./install.sh
 ```
 
 **Option 2: Manual Setup**
