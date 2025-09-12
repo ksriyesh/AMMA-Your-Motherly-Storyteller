@@ -217,15 +217,8 @@ def route_from_amma(state: State) -> Literal["__end__", "tools", "story_creator"
             user_message = msg.content.lower()
             break
     
-    # Check for conversation ending phrases first
-    if user_message:
-        ending_phrases = [
-            "good night", "goodnight", "bye", "goodbye", "thank you", 
-            "thanks", "that's all", "i'm done", "no more", "stop",
-            "enough", "i'm tired", "time to sleep", "bedtime"
-        ]
-        if any(phrase in user_message for phrase in ending_phrases):
-            return "__end__"
+    # Let AMMA naturally understand when conversations should end
+    # based on context and flow, rather than enforcing specific phrases
     
     # Priority routing based on state:
     
@@ -237,7 +230,21 @@ def route_from_amma(state: State) -> Literal["__end__", "tools", "story_creator"
     if (state.child_name or state.story_theme) and not state.generated_story:
         return "story_creator"
     
-    # Default: end conversation (wait for user input)
+    # 3. Check if user is indicating they want to end (natural bedtime cues)
+    if user_message:
+        natural_endings = ["good night", "goodnight", "bye", "goodbye", "sleep", "tired", "bedtime"]
+        if any(ending in user_message for ending in natural_endings):
+            # User wants to end - let AMMA respond with a gentle goodbye
+            return "__end__"
+    
+    # 4. Check if AMMA is indicating conversation should end
+    # Look for natural ending cues in AMMA's response  
+    amma_response = last_message.content.lower() if last_message.content else ""
+    ending_indicators = ["sweet dreams", "sleep well", "goodnight", "time for bed", "close your eyes"]
+    if any(indicator in amma_response for indicator in ending_indicators):
+        return "__end__"
+    
+    # Default: continue conversation (wait for user input)
     return "__end__"
 
 
