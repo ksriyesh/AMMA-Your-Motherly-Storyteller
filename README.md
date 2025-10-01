@@ -1,5 +1,4 @@
 # 🌙 AMMA 2.0 - Bedtime Story Agent
-## Hippocratic AI Take-Home Assignment
 
 **AMMA** (Adaptive Multi-agent Motherly Assistant) is an intelligent conversational AI system that creates personalized bedtime stories for children aged 5-10. Built with a hybrid architecture combining **ReAct (Reasoning and Acting)** and **Reflection** patterns, AMMA provides natural conversation while generating high-quality, safe bedtime stories.
 
